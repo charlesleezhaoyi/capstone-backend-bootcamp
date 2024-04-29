@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class npos extends Model {
     /**
@@ -11,16 +9,21 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.belongsToMany(models.members, { through: "npo_members" });
     }
   }
-  npos.init({
-    name: DataTypes.STRING,
-    event_module: DataTypes.BOOLEAN,
-    discussion_module: DataTypes.BOOLEAN,
-    membership_mgmt: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'npos',
-  });
+  npos.init(
+    {
+      name: DataTypes.STRING,
+      event_module: DataTypes.BOOLEAN,
+      discussion_module: DataTypes.BOOLEAN,
+      membership_mgmt: DataTypes.STRING,
+    },
+    {
+      sequelize,
+      modelName: "npos",
+      underscored: true,
+    }
+  );
   return npos;
 };
