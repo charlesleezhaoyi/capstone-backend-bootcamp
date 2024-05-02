@@ -1,7 +1,9 @@
 "use strict";
-/** @type {import('sequelize-cli').Migration} */
+
+import { QueryInterface, DataTypes } from "sequelize";
+
 module.exports = {
-  async up(queryInterface, Sequelize) {
+  async up(queryInterface: QueryInterface, Sequelize: typeof DataTypes) {
     await queryInterface.createTable("npos", {
       id: {
         allowNull: false,
@@ -19,19 +21,19 @@ module.exports = {
         type: Sequelize.BOOLEAN,
       },
       membership_mgmt: {
-        type: Sequelize.STRING,
+        type: Sequelize.ENUM("premium", "rulebased"),
       },
-      created_at: {
+      createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
       },
-      updated_at: {
+      updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
       },
     });
   },
-  async down(queryInterface, Sequelize) {
+  async down(queryInterface: QueryInterface, Sequelize: typeof DataTypes) {
     await queryInterface.dropTable("npos");
   },
 };
