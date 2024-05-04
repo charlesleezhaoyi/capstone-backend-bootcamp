@@ -2,18 +2,38 @@
 
 import { QueryInterface, DataTypes } from "sequelize";
 
-/** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface: QueryInterface, Sequelize: typeof DataTypes) {
-    await queryInterface.createTable("roles", {
+    await queryInterface.createTable("events", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      name: {
+      organiser_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      event_overview: {
         type: Sequelize.STRING,
+        allowNull: false,
+      },
+      event_name: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      event_photo_url: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      date: {
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
+      time: {
+        type: Sequelize.TIME,
+        allowNull: false,
       },
       created_at: {
         allowNull: false,
@@ -26,6 +46,6 @@ module.exports = {
     });
   },
   async down(queryInterface: QueryInterface) {
-    await queryInterface.dropTable("roles");
+    await queryInterface.dropTable("events");
   },
 };

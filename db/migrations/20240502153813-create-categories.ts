@@ -2,10 +2,9 @@
 
 import { QueryInterface, DataTypes } from "sequelize";
 
-/** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface: QueryInterface, Sequelize: typeof DataTypes) {
-    await queryInterface.createTable("roles", {
+    await queryInterface.createTable("categories", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -13,7 +12,8 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       name: {
-        type: Sequelize.STRING,
+        type: Sequelize.ENUM("Category1", "Category2", "Category3"),
+        allowNull: false,
       },
       created_at: {
         allowNull: false,
@@ -26,6 +26,6 @@ module.exports = {
     });
   },
   async down(queryInterface: QueryInterface) {
-    await queryInterface.dropTable("roles");
+    await queryInterface.dropTable("categories");
   },
 };
