@@ -1,9 +1,15 @@
 "use strict";
 
 import { EnumDataType } from "sequelize";
-import { Model, Table, Column, DataType } from "sequelize-typescript";
-import { BelongsTo, ForeignKey } from "sequelize-typescript";
+import {
+  Model,
+  Table,
+  Column,
+  DataType,
+  BelongsToMany,
+} from "sequelize-typescript";
 import { Npos } from "./npos";
+import { Events } from "./events";
 
 interface MembersAttributes {
   full_name: string;
@@ -23,13 +29,19 @@ interface MembersAttributes {
   underscored: true,
 })
 export class Members extends Model<MembersAttributes> {
-  // Define the association between the Npos and Members classes
-  @ForeignKey(() => Npos)
-  @Column
-  npo_id!: number;
+  // Define the association between the Npos and Members table
 
-  @BelongsTo(() => Npos)
-  npo!: Npos;
+  @BelongsToMany(() => Npos, { through: "npo_members" })
+  npo!: Npos[];
+
+  // Define the association between Members and Events table
+  @BelongsToMany(() => Events, {
+    through: "event_members",
+    foreignKey: "member_id",
+    otherKey: "event_id",
+    as: "Events",
+  })
+  events!: Events[];
 
   // Define the columns of the Members table
   @Column({

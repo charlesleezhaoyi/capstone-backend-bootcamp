@@ -1,6 +1,14 @@
 "use strict";
 
-import { Model, Table, Column, DataType } from "sequelize-typescript";
+import {
+  Model,
+  Table,
+  Column,
+  DataType,
+  BelongsToMany,
+} from "sequelize-typescript";
+import { Categories } from "./categories";
+import { Members } from "./members";
 
 interface EventsAttributes {
   organiser_id: number;
@@ -17,6 +25,25 @@ interface EventsAttributes {
   underscored: true,
 })
 export class Events extends Model<EventsAttributes> {
+  // Define the association between the Events and Categories table
+  @BelongsToMany(() => Events, {
+    through: "event_categories",
+    foreignKey: "event_id",
+    otherKey: "category_id",
+    as: "Categories",
+  })
+  categories!: Categories[];
+
+  // Define the association between the Events and Members table
+  @BelongsToMany(() => Members, {
+    through: "event_members",
+    foreignKey: "event_id",
+    otherKey: "member_id",
+    as: "Members",
+  })
+  members!: Members[];
+
+  // Define the columns of the Events table
   @Column({
     type: DataType.INTEGER,
     allowNull: false,
