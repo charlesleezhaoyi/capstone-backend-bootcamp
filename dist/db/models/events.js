@@ -8,57 +8,89 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Model, Table, Column, DataType } from "sequelize-typescript";
-let Events = class Events extends Model {
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Events = void 0;
+const sequelize_typescript_1 = require("sequelize-typescript");
+const members_1 = require("./members");
+let Events = class Events extends sequelize_typescript_1.Model {
+    // Define the association between the Events and Categories table
+    categories;
+    // Define the association between the Events and Members table
+    members;
+    // Define the columns of the Events table
+    organiser_id;
+    event_overview;
+    event_name;
+    event_photo_url;
+    date;
+    time;
 };
+exports.Events = Events;
 __decorate([
-    Column({
-        type: DataType.INTEGER,
+    (0, sequelize_typescript_1.BelongsToMany)(() => Events, {
+        through: "event_categories",
+        foreignKey: "event_id",
+        otherKey: "category_id",
+        as: "Events",
+    }),
+    __metadata("design:type", Array)
+], Events.prototype, "categories", void 0);
+__decorate([
+    (0, sequelize_typescript_1.BelongsToMany)(() => members_1.Members, {
+        through: "event_members",
+        foreignKey: "event_id",
+        otherKey: "member_id",
+        as: "Events",
+    }),
+    __metadata("design:type", Array)
+], Events.prototype, "members", void 0);
+__decorate([
+    (0, sequelize_typescript_1.Column)({
+        type: sequelize_typescript_1.DataType.INTEGER,
         allowNull: false,
     }),
     __metadata("design:type", Number)
 ], Events.prototype, "organiser_id", void 0);
 __decorate([
-    Column({
-        type: DataType.STRING,
+    (0, sequelize_typescript_1.Column)({
+        type: sequelize_typescript_1.DataType.STRING,
         allowNull: false,
     }),
     __metadata("design:type", String)
 ], Events.prototype, "event_overview", void 0);
 __decorate([
-    Column({
-        type: DataType.STRING,
+    (0, sequelize_typescript_1.Column)({
+        type: sequelize_typescript_1.DataType.STRING,
         allowNull: false,
     }),
     __metadata("design:type", String)
 ], Events.prototype, "event_name", void 0);
 __decorate([
-    Column({
-        type: DataType.STRING,
+    (0, sequelize_typescript_1.Column)({
+        type: sequelize_typescript_1.DataType.STRING,
         allowNull: true,
     }),
     __metadata("design:type", String)
 ], Events.prototype, "event_photo_url", void 0);
 __decorate([
-    Column({
-        type: DataType.DATE,
+    (0, sequelize_typescript_1.Column)({
+        type: sequelize_typescript_1.DataType.DATE,
         allowNull: false,
     }),
     __metadata("design:type", Date)
 ], Events.prototype, "date", void 0);
 __decorate([
-    Column({
-        type: DataType.TIME,
+    (0, sequelize_typescript_1.Column)({
+        type: sequelize_typescript_1.DataType.TIME,
         allowNull: false,
     }),
     __metadata("design:type", String)
 ], Events.prototype, "time", void 0);
-Events = __decorate([
-    Table({
+exports.Events = Events = __decorate([
+    (0, sequelize_typescript_1.Table)({
         tableName: "events",
         modelName: "events",
         underscored: true,
     })
 ], Events);
-export { Events };
 //# sourceMappingURL=events.js.map

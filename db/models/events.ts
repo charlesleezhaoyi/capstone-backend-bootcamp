@@ -30,7 +30,7 @@ export class Events extends Model<EventsAttributes> {
     through: "event_categories",
     foreignKey: "event_id",
     otherKey: "category_id",
-    as: "Categories",
+    as: "Events",
   })
   categories!: Categories[];
 
@@ -39,7 +39,7 @@ export class Events extends Model<EventsAttributes> {
     through: "event_members",
     foreignKey: "event_id",
     otherKey: "member_id",
-    as: "Members",
+    as: "Events",
   })
   members!: Members[];
 

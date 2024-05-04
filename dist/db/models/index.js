@@ -1,56 +1,52 @@
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-import { Sequelize } from "sequelize-typescript";
-import { Npos } from "./npos";
-import dotenv from "dotenv";
-import path from "path";
-dotenv.config();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Npos = exports.sequelize = void 0;
+const sequelize_typescript_1 = require("sequelize-typescript");
+const npos_1 = require("./npos");
+Object.defineProperty(exports, "Npos", { enumerable: true, get: function () { return npos_1.Npos; } });
+const dotenv_1 = __importDefault(require("dotenv"));
+const path_1 = __importDefault(require("path"));
+dotenv_1.default.config();
 const env = process.env.NODE_ENV || "development";
-const config = require(path.join(__dirname, "..", "..", "config", "database.js"))[env];
+const config = require(path_1.default.join(__dirname, "..", "..", "config", "database.js"))[env];
 let sequelize;
 if (process.env.DATABASE_URL) {
-    sequelize = new Sequelize({
+    exports.sequelize = sequelize = new sequelize_typescript_1.Sequelize({
         username: process.env.USERNAME,
         password: process.env.PASSWORD,
         database: process.env.DATABASE,
         host: process.env.HOST,
         dialect: process.env.DIALECT,
-        models: [Npos],
+        models: [npos_1.Npos],
     });
 }
 else if (config.use_env_variable) {
     // If your configuration specifies a variable (e.g., DATABASE_URL), use it
     const dbUrl = process.env[config.use_env_variable];
-    sequelize = new Sequelize(dbUrl, config);
+    exports.sequelize = sequelize = new sequelize_typescript_1.Sequelize(dbUrl, config);
 }
 else {
     // Use the configuration file details
-    sequelize = new Sequelize({
+    exports.sequelize = sequelize = new sequelize_typescript_1.Sequelize({
         username: process.env.USERNAME,
         password: process.env.PASSWORD,
         database: process.env.NAME,
         host: process.env.HOST,
         dialect: process.env.DIALECT,
-        models: [Npos],
+        models: [npos_1.Npos],
     });
 }
 // Confirms the connection to the database
-(() => __awaiter(void 0, void 0, void 0, function* () {
+(async () => {
     try {
-        yield sequelize.authenticate();
+        await sequelize.authenticate();
         console.log("Connected to the database!");
     }
     catch (err) {
         console.error("Error connecting to the database:", err);
     }
-}))();
-// Export model instance
-export { sequelize, Npos };
+})();
 //# sourceMappingURL=index.js.map

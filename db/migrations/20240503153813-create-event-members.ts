@@ -4,7 +4,7 @@ import { QueryInterface, DataTypes } from "sequelize";
 
 module.exports = {
   async up(queryInterface: QueryInterface, Sequelize: typeof DataTypes) {
-    await queryInterface.createTable("event_comments", {
+    await queryInterface.createTable("event_members", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -24,16 +24,11 @@ module.exports = {
       member_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: {
-          model: "members",
-          key: "id",
-        },
-        onUpdate: "CASCADE",
-        onDelete: "CASCADE",
       },
-      comment: {
-        type: Sequelize.TEXT,
+      invite_sent: {
+        type: Sequelize.BOOLEAN,
         allowNull: false,
+        defaultValue: false,
       },
       created_at: {
         allowNull: false,
@@ -47,6 +42,6 @@ module.exports = {
   },
 
   async down(queryInterface: QueryInterface, Sequelize: typeof DataTypes) {
-    await queryInterface.dropTable("event_comments");
+    await queryInterface.dropTable("event_members");
   },
 };

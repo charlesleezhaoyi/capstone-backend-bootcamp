@@ -1,9 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-/** @type {import('sequelize-cli').Migration} */
 module.exports = {
     async up(queryInterface, Sequelize) {
-        await queryInterface.createTable("roles", {
+        await queryInterface.createTable("categories", {
             id: {
                 allowNull: false,
                 autoIncrement: true,
@@ -11,7 +10,8 @@ module.exports = {
                 type: Sequelize.INTEGER,
             },
             name: {
-                type: Sequelize.STRING,
+                type: Sequelize.ENUM("Category1", "Category2", "Category3"),
+                allowNull: false,
             },
             created_at: {
                 allowNull: false,
@@ -24,7 +24,7 @@ module.exports = {
         });
     },
     async down(queryInterface) {
-        await queryInterface.dropTable("roles");
+        await queryInterface.dropTable("categories");
     },
 };
-//# sourceMappingURL=20240502153813-create-roles.js.map
+//# sourceMappingURL=20240502153813-create-categories.js.map

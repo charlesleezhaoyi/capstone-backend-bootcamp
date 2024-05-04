@@ -8,47 +8,79 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Model, Table, Column, DataType } from "sequelize-typescript";
-let Members = class Members extends Model {
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Members = void 0;
+const sequelize_typescript_1 = require("sequelize-typescript");
+const npos_1 = require("./npos");
+const events_1 = require("./events");
+let Members = class Members extends sequelize_typescript_1.Model {
+    // Define the association between the Npos and Members table
+    npo;
+    // Define the association between Members and Events table
+    events;
+    // Define the columns of the Members table
+    full_name;
+    date_of_birth;
+    gender;
+    occupation;
+    employee_at;
+    email;
+    cv_url;
+    portfolio_link_url;
+    is_onboarded;
 };
+exports.Members = Members;
 __decorate([
-    Column({
-        type: DataType.STRING,
+    (0, sequelize_typescript_1.BelongsToMany)(() => npos_1.Npos, { through: "npo_members" }),
+    __metadata("design:type", Array)
+], Members.prototype, "npo", void 0);
+__decorate([
+    (0, sequelize_typescript_1.BelongsToMany)(() => events_1.Events, {
+        through: "event_members",
+        foreignKey: "member_id",
+        otherKey: "event_id",
+        as: "Events",
+    }),
+    __metadata("design:type", Array)
+], Members.prototype, "events", void 0);
+__decorate([
+    (0, sequelize_typescript_1.Column)({
+        type: sequelize_typescript_1.DataType.STRING,
         allowNull: false,
     }),
     __metadata("design:type", String)
 ], Members.prototype, "full_name", void 0);
 __decorate([
-    Column({
-        type: DataType.DATE,
+    (0, sequelize_typescript_1.Column)({
+        type: sequelize_typescript_1.DataType.DATE,
         allowNull: false,
     }),
     __metadata("design:type", Date)
 ], Members.prototype, "date_of_birth", void 0);
 __decorate([
-    Column({
-        type: DataType.ENUM("female", "male"),
+    (0, sequelize_typescript_1.Column)({
+        type: sequelize_typescript_1.DataType.ENUM("female", "male"),
         allowNull: false,
     }),
     __metadata("design:type", String)
 ], Members.prototype, "gender", void 0);
 __decorate([
-    Column({
-        type: DataType.STRING,
+    (0, sequelize_typescript_1.Column)({
+        type: sequelize_typescript_1.DataType.STRING,
         allowNull: false,
     }),
     __metadata("design:type", String)
 ], Members.prototype, "occupation", void 0);
 __decorate([
-    Column({
-        type: DataType.STRING,
+    (0, sequelize_typescript_1.Column)({
+        type: sequelize_typescript_1.DataType.STRING,
         allowNull: true,
     }),
     __metadata("design:type", String)
 ], Members.prototype, "employee_at", void 0);
 __decorate([
-    Column({
-        type: DataType.STRING,
+    (0, sequelize_typescript_1.Column)({
+        type: sequelize_typescript_1.DataType.STRING,
         allowNull: false,
         validate: {
             isEmail: true,
@@ -57,33 +89,32 @@ __decorate([
     __metadata("design:type", String)
 ], Members.prototype, "email", void 0);
 __decorate([
-    Column({
-        type: DataType.STRING,
+    (0, sequelize_typescript_1.Column)({
+        type: sequelize_typescript_1.DataType.STRING,
         allowNull: true,
     }),
     __metadata("design:type", String)
 ], Members.prototype, "cv_url", void 0);
 __decorate([
-    Column({
-        type: DataType.STRING,
+    (0, sequelize_typescript_1.Column)({
+        type: sequelize_typescript_1.DataType.STRING,
         allowNull: true,
     }),
     __metadata("design:type", String)
 ], Members.prototype, "portfolio_link_url", void 0);
 __decorate([
-    Column({
-        type: DataType.BOOLEAN,
+    (0, sequelize_typescript_1.Column)({
+        type: sequelize_typescript_1.DataType.BOOLEAN,
         allowNull: false,
         defaultValue: false,
     }),
     __metadata("design:type", Boolean)
 ], Members.prototype, "is_onboarded", void 0);
-Members = __decorate([
-    Table({
+exports.Members = Members = __decorate([
+    (0, sequelize_typescript_1.Table)({
         tableName: "members",
         modelName: "members",
         underscored: true,
     })
 ], Members);
-export { Members };
 //# sourceMappingURL=members.js.map
