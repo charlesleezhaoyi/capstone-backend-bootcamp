@@ -16,8 +16,8 @@ module.exports = {
         cv_url: "http://example.com/johndoe/cv",
         portfolio_link_url: "http://example.com/johndoe/portfolio",
         is_onboarded: true,
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        created_at: new Date(),
+        updated_at: new Date(),
       },
       {
         full_name: "Admin",
@@ -29,8 +29,8 @@ module.exports = {
         cv_url: "http://example.com/johndoe/cv",
         portfolio_link_url: "http://example.com/johndoe/portfolio",
         is_onboarded: true,
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        created_at: new Date(),
+        updated_at: new Date(),
       },
       {
         full_name: "Member",
@@ -42,8 +42,8 @@ module.exports = {
         cv_url: "http://example.com/johndoe/cv",
         portfolio_link_url: "http://example.com/johndoe/portfolio",
         is_onboarded: true,
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        created_at: new Date(),
+        updated_at: new Date(),
       },
     ]);
   },
