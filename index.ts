@@ -9,6 +9,7 @@ const app = express();
 
 // Authorization middleware. When used, the Access Token must
 // exist and be verified against the Auth0 JSON Web Key Set.
+
 // Enable CORS access to this server
 app.use(cors());
 
