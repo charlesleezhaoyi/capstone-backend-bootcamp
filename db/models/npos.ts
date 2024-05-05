@@ -2,7 +2,7 @@
 
 import { Model, Table, Column, DataType } from "sequelize-typescript";
 import { HasMany } from "sequelize-typescript";
-import { Members } from "./members"; // Import the Members class from the appropriate module
+import { NpoMembers } from "./npoMembers";
 
 interface NposAttributes {
   name: string;
@@ -31,8 +31,8 @@ interface NposAttributes {
 })
 export class Npos extends Model<NposAttributes> {
   // Define the association between the Npos and Members classes
-  @HasMany(() => Members)
-  members!: Members[];
+  @HasMany(() => NpoMembers)
+  npoMembers!: NpoMembers[];
 
   // Define the columns of the Npos table
   @Column({

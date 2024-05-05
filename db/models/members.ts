@@ -7,8 +7,9 @@ import {
   Column,
   DataType,
   BelongsToMany,
+  HasMany,
 } from "sequelize-typescript";
-import { Npos } from "./npos";
+import { NpoMembers } from "./npoMembers";
 import { Events } from "./events";
 
 interface MembersAttributes {
@@ -31,8 +32,8 @@ interface MembersAttributes {
 export class Members extends Model<MembersAttributes> {
   // Define the association between the Npos and Members table
 
-  @BelongsToMany(() => Npos, { through: "npo_members" })
-  npo!: Npos[];
+  @HasMany(() => NpoMembers)
+  npoMembers!: NpoMembers[];
 
   // Define the association between Members and Events table
   @BelongsToMany(() => Events, {
