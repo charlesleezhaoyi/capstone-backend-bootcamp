@@ -12,10 +12,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Npos = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 const sequelize_typescript_2 = require("sequelize-typescript");
-const members_1 = require("./members"); // Import the Members class from the appropriate module
+const npoMembers_1 = require("./npoMembers");
 let Npos = class Npos extends sequelize_typescript_1.Model {
     // Define the association between the Npos and Members classes
-    members;
+    npoMembers;
     // Define the columns of the Npos table
     name;
     key_activities;
@@ -36,9 +36,9 @@ let Npos = class Npos extends sequelize_typescript_1.Model {
 };
 exports.Npos = Npos;
 __decorate([
-    (0, sequelize_typescript_2.HasMany)(() => members_1.Members),
+    (0, sequelize_typescript_2.HasMany)(() => npoMembers_1.NpoMembers),
     __metadata("design:type", Array)
-], Npos.prototype, "members", void 0);
+], Npos.prototype, "npoMembers", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({
         type: sequelize_typescript_1.DataType.STRING,

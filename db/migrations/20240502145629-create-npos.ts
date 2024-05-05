@@ -16,7 +16,13 @@ module.exports = {
         allowNull: false,
       },
       key_activities: {
-        type: Sequelize.ENUM(),
+        type: Sequelize.ENUM(
+          "Education",
+          "Healthcare",
+          "Environment",
+          "Social Services",
+          "Others"
+        ),
         allowNull: false,
       },
       company_website_url: {
@@ -24,7 +30,7 @@ module.exports = {
         allowNull: false,
       },
       country_incorporated: {
-        type: Sequelize.ENUM(),
+        type: Sequelize.ENUM("Singapore", "Malaysia"),
         allowNull: false,
       },
       company_description: {

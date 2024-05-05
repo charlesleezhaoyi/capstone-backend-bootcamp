@@ -11,11 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Members = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
-const npos_1 = require("./npos");
+const npoMembers_1 = require("./npoMembers");
 const events_1 = require("./events");
 let Members = class Members extends sequelize_typescript_1.Model {
     // Define the association between the Npos and Members table
-    npo;
+    npoMembers;
     // Define the association between Members and Events table
     events;
     // Define the columns of the Members table
@@ -31,9 +31,9 @@ let Members = class Members extends sequelize_typescript_1.Model {
 };
 exports.Members = Members;
 __decorate([
-    (0, sequelize_typescript_1.BelongsToMany)(() => npos_1.Npos, { through: "npo_members" }),
+    (0, sequelize_typescript_1.HasMany)(() => npoMembers_1.NpoMembers),
     __metadata("design:type", Array)
-], Members.prototype, "npo", void 0);
+], Members.prototype, "npoMembers", void 0);
 __decorate([
     (0, sequelize_typescript_1.BelongsToMany)(() => events_1.Events, {
         through: "event_members",
