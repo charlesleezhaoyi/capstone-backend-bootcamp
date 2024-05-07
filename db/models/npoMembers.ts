@@ -54,19 +54,19 @@ export class NpoMembers extends Model<NpoMembersAttributes> {
     type: DataType.STRING,
     allowNull: true,
   })
-  open_ended_ans_1!: string;
+  open_ended_ans_1?: string;
 
   @Column({
     type: DataType.STRING,
     allowNull: true,
   })
-  open_ended_ans_2!: string;
+  open_ended_ans_2?: string;
 
   @Column({
     type: DataType.STRING,
     allowNull: true,
   })
-  open_ended_ans_3!: string;
+  open_ended_ans_3?: string;
 
   @BelongsTo(() => Npos)
   npos!: Npos;
