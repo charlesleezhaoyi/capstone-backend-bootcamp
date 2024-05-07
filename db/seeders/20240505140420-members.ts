@@ -7,7 +7,7 @@ module.exports = {
   async up(queryInterface: QueryInterface, Sequelize: typeof DataTypes) {
     await queryInterface.bulkInsert("members", [
       {
-        full_name: "Owner",
+        full_name: "Micheal Moo",
         date_of_birth: new Date("1990-01-01"),
         gender: "male",
         occupation: "Software Developer",
@@ -20,7 +20,7 @@ module.exports = {
         updated_at: new Date(),
       },
       {
-        full_name: "Admin",
+        full_name: "Victor Van Voss",
         date_of_birth: new Date("1990-01-01"),
         gender: "male",
         occupation: "Software Developer",
@@ -33,9 +33,9 @@ module.exports = {
         updated_at: new Date(),
       },
       {
-        full_name: "Member",
+        full_name: "Suzy Soh",
         date_of_birth: new Date("1990-01-01"),
-        gender: "male",
+        gender: "female",
         occupation: "Software Developer",
         employee_at: "GitHub",
         email: "johndoe@example.com",
