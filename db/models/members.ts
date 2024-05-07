@@ -40,7 +40,7 @@ export class Members extends Model<MembersAttributes> {
     through: "event_members",
     foreignKey: "member_id",
     otherKey: "event_id",
-    as: "Events",
+    as: "Members",
   })
   events!: Events[];
 

@@ -1,10 +1,11 @@
 import cors from "cors";
 import express from "express";
 import dotenv from "dotenv";
+import { MembersRouter } from "./routers/membersRouter";
 
 dotenv.config();
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 const app = express();
 
 // Authorization middleware. When used, the Access Token must
@@ -17,6 +18,9 @@ app.use(cors());
 app.use(express.json());
 
 // Routers
+const membersRouter = new MembersRouter().routes();
+
+app.use(membersRouter);
 
 app.listen(PORT, () => {
   console.log(`Express app listening on port ${PORT}!`);

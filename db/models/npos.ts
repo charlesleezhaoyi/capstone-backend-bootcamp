@@ -42,10 +42,22 @@ export class Npos extends Model<NposAttributes> {
   name!: string;
 
   @Column({
-    type: DataType.STRING,
+    type: DataType.ENUM,
+    values: [
+      "Education",
+      "Healthcare",
+      "Environment",
+      "Social Services",
+      "Others",
+    ],
     allowNull: false,
   })
-  key_activities!: string;
+  key_activities!:
+    | "Education"
+    | "Healthcare"
+    | "Environment"
+    | "Social Services"
+    | "Others";
 
   @Column({
     type: DataType.STRING,
@@ -54,10 +66,11 @@ export class Npos extends Model<NposAttributes> {
   company_website_url!: string;
 
   @Column({
-    type: DataType.STRING,
+    type: DataType.ENUM,
+    values: ["Singapore", "Malaysia"],
     allowNull: false,
   })
-  country_incorporated!: string;
+  country_incorporated!: "Singapore" | "Malaysia";
 
   @Column({
     type: DataType.STRING,

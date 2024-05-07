@@ -1,5 +1,10 @@
 import { Sequelize } from "sequelize-typescript";
 import { Npos } from "./npos";
+import { Members } from "./members";
+import { NpoMembers } from "./npoMembers";
+import { Roles } from "./roles";
+import { Events } from "./events";
+import { Categories } from "./categories";
 import { Dialect } from "sequelize";
 import dotenv from "dotenv";
 import path from "path";
@@ -23,7 +28,7 @@ if (process.env.DATABASE_URL) {
     database: process.env.DATABASE,
     host: process.env.HOST,
     dialect: process.env.DIALECT as Dialect,
-    models: [Npos],
+    models: [Npos, Members, NpoMembers, Roles, Events, Categories],
   });
 } else if (config.use_env_variable) {
   // If your configuration specifies a variable (e.g., DATABASE_URL), use it
@@ -34,10 +39,10 @@ if (process.env.DATABASE_URL) {
   sequelize = new Sequelize({
     username: process.env.USERNAME,
     password: process.env.PASSWORD,
-    database: process.env.NAME,
+    database: process.env.DATABASE,
     host: process.env.HOST,
     dialect: process.env.DIALECT as Dialect,
-    models: [Npos],
+    models: [Npos, Members, NpoMembers, Roles, Events, Categories],
   });
 }
 
@@ -52,4 +57,4 @@ if (process.env.DATABASE_URL) {
 })();
 
 // Export model instance
-export { sequelize, Npos };
+export { sequelize, Npos, Members, NpoMembers, Roles, Events, Categories };
