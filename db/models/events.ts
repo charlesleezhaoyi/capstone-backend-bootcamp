@@ -72,11 +72,11 @@ export class Events extends Model<EventsAttributes> {
     type: DataType.DATE,
     allowNull: false,
   })
-  declare date!: Date;
+  declare date: Date;
 
   @Column({
     type: DataType.TIME,
     allowNull: false,
   })
-  declare time!: string;
+  declare time: string;
 }

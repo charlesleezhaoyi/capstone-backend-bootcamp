@@ -65,14 +65,14 @@ export class NpoMembersController {
         return res.status(404).json({ error: true, msg: "Member not found" });
       }
 
-      // open_ended_ans should be nullable
+      // open_ended_ans should be nullable instead of placeholder strings - to explore other implementations in future
       const npoMember = await NpoMembers.create({
         member_id: member.id,
         npo_id: npo.id,
         role_id: 3,
-        open_ended_ans_1: "Singapore",
-        open_ended_ans_2: "Singapore",
-        open_ended_ans_3: "Singapore",
+        open_ended_ans_1: "NULL",
+        open_ended_ans_2: "NULL",
+        open_ended_ans_3: "NULL",
       });
       return res.json(npoMember);
     } catch (err) {
