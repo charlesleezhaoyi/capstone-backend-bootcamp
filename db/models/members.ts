@@ -21,6 +21,7 @@ interface MembersAttributes {
   email: string;
   cv_url: string;
   portfolio_link_url: string;
+  display_img_url: string;
   is_onboarded: boolean;
 }
 
@@ -95,6 +96,12 @@ export class Members extends Model<MembersAttributes> {
     allowNull: true,
   })
   portfolio_link_url?: string;
+
+  @Column({
+    type: DataType.STRING,
+    allowNull: true,
+  })
+  display_img_url?: string;
 
   @Column({
     type: DataType.BOOLEAN,
