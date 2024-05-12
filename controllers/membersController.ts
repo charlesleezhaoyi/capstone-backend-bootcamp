@@ -7,9 +7,9 @@ interface NpoMember {
   member_id: number;
   role_id: number;
   role?: string;
-  open_ended_ans_1: string | null;
-  open_ended_ans_2: string | null;
-  open_ended_ans_3: string | null;
+  open_ended_ans_1?: string | undefined;
+  open_ended_ans_2?: string | undefined;
+  open_ended_ans_3?: string | undefined;
   createdAt: string;
   updatedAt: string;
 }
@@ -20,10 +20,10 @@ export interface Member {
   date_of_birth: string;
   gender: "male" | "female";
   occupation: string;
-  employee_at: string;
+  employee_at?: string | undefined;
   email: string;
-  cv_url: string;
-  portfolio_link_url: string;
+  cv_url?: string | undefined;
+  portfolio_link_url?: string | undefined;
   is_onboarded: boolean;
   createdAt: string;
   updatedAt: string;

@@ -10,6 +10,6 @@ module.exports = {
   },
 
   async down(queryInterface: QueryInterface, Sequelize: typeof DataTypes) {
-    await queryInterface.removeColumn("Members", "display_img_url");
+    await queryInterface.removeColumn("members", "display_img_url");
   },
 };
