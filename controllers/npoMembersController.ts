@@ -26,8 +26,6 @@ export class NpoMembersController {
     }
   }
 
-  //Need to check NPO for given request
-  // Assigned role to member_id = 4 and not showing in DB
   async assignRoleToMember(req: Request, res: Response) {
     const { role_name, member_id } = req.body;
     try {
@@ -50,7 +48,6 @@ export class NpoMembersController {
     }
   }
 
-  //TO FIX
   async assignNpoToMember(req: Request, res: Response) {
     const { npo_name, member_id } = req.body;
     try {
