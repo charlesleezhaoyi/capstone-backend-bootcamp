@@ -24,5 +24,5 @@ export class Roles extends Model<RolesAttributes> {
     type: DataType.ENUM("Owner", "Admin", "Member"),
     allowNull: false,
   })
-  name!: "Owner" | "Admin" | "Member";
+  declare name: "Owner" | "Admin" | "Member";
 }

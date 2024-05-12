@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Npos } from "../db/models";
+import { Npos } from "../db/models/npos";
 
 interface NposAttributes {
   name: string;
@@ -20,4 +20,22 @@ interface NposAttributes {
   is_verified: boolean;
 }
 
-export class NposController {}
+export class NposController {
+  async checkNpoExist(req: Request, res: Response) {
+    let { name } = req.body;
+    try {
+      name = name.toLowerCase();
+      name = name
+        .trim()
+        .split(" ")
+        .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
+      const output = await Npos.findOne({
+        where: { name: name },
+      });
+      return res.json(output);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: (err as Error).message });
+    }
+  }
+}

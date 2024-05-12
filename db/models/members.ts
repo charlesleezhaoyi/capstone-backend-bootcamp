@@ -33,7 +33,7 @@ export class Members extends Model<MembersAttributes> {
   // Define the association between the Npos and Members table
 
   @HasMany(() => NpoMembers)
-  npoMembers!: NpoMembers[];
+  declare npoMembers: NpoMembers[];
 
   // Define the association between Members and Events table
   @BelongsToMany(() => Events, {
@@ -42,38 +42,38 @@ export class Members extends Model<MembersAttributes> {
     otherKey: "event_id",
     as: "Members",
   })
-  events!: Events[];
+  declare events: Events[];
 
   // Define the columns of the Members table
   @Column({
     type: DataType.STRING,
     allowNull: false,
   })
-  full_name!: string;
+  declare full_name: string;
 
   @Column({
     type: DataType.DATE,
     allowNull: false,
   })
-  date_of_birth!: Date;
+  declare date_of_birth: Date;
 
   @Column({
     type: DataType.ENUM("female", "male"),
     allowNull: false,
   })
-  gender!: string;
+  declare gender: string;
 
   @Column({
     type: DataType.STRING,
     allowNull: false,
   })
-  occupation!: string;
+  declare occupation: string;
 
   @Column({
     type: DataType.STRING,
     allowNull: true,
   })
-  employee_at?: string;
+  declare employee_at?: string;
 
   @Column({
     type: DataType.STRING,
@@ -82,24 +82,24 @@ export class Members extends Model<MembersAttributes> {
       isEmail: true,
     },
   })
-  email!: string;
+  declare email: string;
 
   @Column({
     type: DataType.STRING,
     allowNull: true,
   })
-  cv_url?: string;
+  declare cv_url?: string;
 
   @Column({
     type: DataType.STRING,
     allowNull: true,
   })
-  portfolio_link_url?: string;
+  declare portfolio_link_url?: string;
 
   @Column({
     type: DataType.BOOLEAN,
     allowNull: false,
     defaultValue: false,
   })
-  is_onboarded!: boolean;
+  declare is_onboarded: boolean;
 }

@@ -34,39 +34,39 @@ export class NpoMembers extends Model<NpoMembersAttributes> {
     type: DataType.INTEGER,
     allowNull: false,
   })
-  npo_id!: number;
+  declare npo_id: number;
 
   @ForeignKey(() => Members)
   @Column({
     type: DataType.INTEGER,
     allowNull: false,
   })
-  member_id!: number;
+  declare member_id: number;
 
   @ForeignKey(() => Roles)
   @Column({
     type: DataType.INTEGER,
     allowNull: false,
   })
-  role_id!: number;
+  declare role_id: number;
 
   @Column({
     type: DataType.STRING,
     allowNull: true,
   })
-  open_ended_ans_1?: string;
+  declare open_ended_ans_1?: string;
 
   @Column({
     type: DataType.STRING,
     allowNull: true,
   })
-  open_ended_ans_2?: string;
+  declare open_ended_ans_2?: string;
 
   @Column({
     type: DataType.STRING,
     allowNull: true,
   })
-  open_ended_ans_3?: string;
+  declare open_ended_ans_3?: string;
 
   @BelongsTo(() => Npos)
   npos!: Npos;

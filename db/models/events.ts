@@ -32,7 +32,7 @@ export class Events extends Model<EventsAttributes> {
     otherKey: "category_id",
     as: "Events",
   })
-  categories!: Categories[];
+  declare categories: Categories[];
 
   // Define the association between the Events and Members table
   @BelongsToMany(() => Members, {
@@ -41,42 +41,42 @@ export class Events extends Model<EventsAttributes> {
     otherKey: "member_id",
     as: "Members",
   })
-  members!: Members[];
+  declare members: Members[];
 
   // Define the columns of the Events table
   @Column({
     type: DataType.INTEGER,
     allowNull: false,
   })
-  organiser_id!: number;
+  declare organiser_id: number;
 
   @Column({
     type: DataType.STRING,
     allowNull: false,
   })
-  event_overview!: string;
+  declare event_overview: string;
 
   @Column({
     type: DataType.STRING,
     allowNull: false,
   })
-  event_name!: string;
+  declare event_name: string;
 
   @Column({
     type: DataType.STRING,
     allowNull: true,
   })
-  event_photo_url?: string;
+  declare event_photo_url?: string;
 
   @Column({
     type: DataType.DATE,
     allowNull: false,
   })
-  date!: Date;
+  declare date!: Date;
 
   @Column({
     type: DataType.TIME,
     allowNull: false,
   })
-  time!: string;
+  declare time!: string;
 }
