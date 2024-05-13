@@ -44,19 +44,19 @@ export class Npos extends Model<NposAttributes> {
   @Column({
     type: DataType.ENUM,
     values: [
-      "Education",
-      "Healthcare",
-      "Environment",
-      "Social Services",
+      "Community Building",
+      "Educational Programmes",
+      "Charitable Causes",
+      "Direct Aid Provision",
       "Others",
     ],
     allowNull: false,
   })
   declare key_activities:
-    | "Education"
-    | "Healthcare"
-    | "Environment"
-    | "Social Services"
+    | "Community Building"
+    | "Educational Programmes"
+    | "Charitable Causes"
+    | "Direct Aid Provision"
     | "Others";
 
   @Column({

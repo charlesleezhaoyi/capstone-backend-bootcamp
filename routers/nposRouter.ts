@@ -13,6 +13,7 @@ export class NposRouter {
   routes = () => {
     const router = Router();
     router.get("/checkNpoExist", nposController.checkNpoExist);
+    router.post("/createNpo", nposController.createNpo);
 
     return router;
   };
