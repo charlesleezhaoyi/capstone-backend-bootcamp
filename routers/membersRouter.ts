@@ -10,8 +10,11 @@ export class MembersRouter {
 
   routes = () => {
     const router = Router();
-    router.post("/", this.membersController.createMember);
-    router.put("/:memberId", this.membersController.updateMember);
+    router.post("/", this.membersController.createMemberWithDefaultValues);
+    router.put(
+      "/update",
+      this.membersController.updateMemberWithCompleteValues
+    );
 
     return router;
   };

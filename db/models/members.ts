@@ -21,6 +21,7 @@ interface MembersAttributes {
   email: string;
   cv_url: string;
   portfolio_link_url: string;
+  display_img_url: string;
   is_onboarded: boolean;
 }
 
@@ -61,7 +62,7 @@ export class Members extends Model<MembersAttributes> {
     type: DataType.ENUM("female", "male"),
     allowNull: false,
   })
-  declare gender: string;
+  declare gender: EnumDataType<string>;
 
   @Column({
     type: DataType.STRING,
@@ -95,6 +96,12 @@ export class Members extends Model<MembersAttributes> {
     allowNull: true,
   })
   declare portfolio_link_url?: string;
+
+  @Column({
+    type: DataType.STRING,
+    allowNull: true,
+  })
+  declare display_img_url?: string;
 
   @Column({
     type: DataType.BOOLEAN,
