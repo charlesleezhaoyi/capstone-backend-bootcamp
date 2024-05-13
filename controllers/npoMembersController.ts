@@ -18,7 +18,13 @@ export class NpoMembersController {
     const { npoId } = req.params;
     try {
       const output = await Members.findAll({
-        include: [{ model: NpoMembers, where: { npo_id: npoId } }],
+        include: [
+          {
+            model: NpoMembers,
+            where: { npo_id: npoId },
+            include: [{ model: Roles }],
+          },
+        ],
       });
       return res.json(output);
     } catch (err) {
