@@ -1,12 +1,21 @@
 import { MembersController } from "../controllers/membersController";
 import { Router } from "express";
 
-const membersController = new MembersController();
-
 export class MembersRouter {
+  private membersController: MembersController;
+
+  constructor(membersController: MembersController) {
+    this.membersController = membersController;
+  }
+
   routes = () => {
     const router = Router();
-    router.get("/members/:npoId", membersController.getNpoMembers);
+    router.post("/", this.membersController.createMemberWithDefaultValues);
+    router.put(
+      "/update",
+      this.membersController.updateMemberWithCompleteValues
+    );
+    router.get("/retrieve", this.membersController.getMemberIDByEmail);
 
     return router;
   };

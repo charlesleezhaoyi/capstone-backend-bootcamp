@@ -28,7 +28,7 @@ export class Categories extends Model<CategoriesAttributes> {
     otherKey: "event_id",
     as: "Events",
   })
-  events!: Events[];
+  declare events: Events[];
 
   // Define the columns of the Categories table
   @Column({
@@ -36,5 +36,5 @@ export class Categories extends Model<CategoriesAttributes> {
     values: ["Category1", "Category2", "Category3"],
     allowNull: false,
   })
-  name!: "Category1" | "Category2" | "Category3";
+  declare name: "Category1" | "Category2" | "Category3";
 }

@@ -32,117 +32,117 @@ interface NposAttributes {
 export class Npos extends Model<NposAttributes> {
   // Define the association between the Npos and Members classes
   @HasMany(() => NpoMembers)
-  npoMembers!: NpoMembers[];
+  declare npoMembers: NpoMembers[];
 
   // Define the columns of the Npos table
   @Column({
     type: DataType.STRING,
     allowNull: false,
   })
-  name!: string;
+  declare name: string;
 
   @Column({
     type: DataType.ENUM,
     values: [
-      "Education",
-      "Healthcare",
-      "Environment",
-      "Social Services",
+      "Community Building",
+      "Educational Programmes",
+      "Charitable Causes",
+      "Direct Aid Provision",
       "Others",
     ],
     allowNull: false,
   })
-  key_activities!:
-    | "Education"
-    | "Healthcare"
-    | "Environment"
-    | "Social Services"
+  declare key_activities:
+    | "Community Building"
+    | "Educational Programmes"
+    | "Charitable Causes"
+    | "Direct Aid Provision"
     | "Others";
 
   @Column({
     type: DataType.STRING,
     allowNull: false,
   })
-  company_website_url!: string;
+  declare company_website_url: string;
 
   @Column({
     type: DataType.ENUM,
     values: ["Singapore", "Malaysia"],
     allowNull: false,
   })
-  country_incorporated!: "Singapore" | "Malaysia";
+  declare country_incorporated: "Singapore" | "Malaysia";
 
   @Column({
     type: DataType.STRING,
     allowNull: false,
   })
-  company_description!: string;
+  declare company_description: string;
 
   @Column({
     type: DataType.ENUM,
     values: ["1-10", "11-30", "31-50"],
     allowNull: false,
   })
-  company_size!: "1-10" | "11-30" | "31-50";
+  declare company_size: "1-10" | "11-30" | "31-50";
 
   @Column({
     type: DataType.STRING,
     allowNull: false,
   })
-  company_logo_url!: string;
+  declare company_logo_url: string;
 
   @Column({
     type: DataType.STRING,
     allowNull: false,
   })
-  acra_url!: string;
-
-  @Column({
-    type: DataType.STRING,
-    allowNull: true,
-  })
-  open_ended_qn_1?: string;
+  declare acra_url: string;
 
   @Column({
     type: DataType.STRING,
     allowNull: true,
   })
-  open_ended_qn_2?: string;
+  declare open_ended_qn_1?: string;
 
   @Column({
     type: DataType.STRING,
     allowNull: true,
   })
-  open_ended_qn_3?: string;
+  declare open_ended_qn_2?: string;
+
+  @Column({
+    type: DataType.STRING,
+    allowNull: true,
+  })
+  declare open_ended_qn_3?: string;
 
   @Column({
     type: DataType.BOOLEAN,
     allowNull: false,
   })
-  is_whitelabelled!: boolean;
+  declare is_whitelabelled: boolean;
 
   @Column({
     type: DataType.BOOLEAN,
     allowNull: false,
   })
-  event_module!: boolean;
+  declare event_module: boolean;
 
   @Column({
     type: DataType.BOOLEAN,
     allowNull: false,
   })
-  discussion_module!: boolean;
+  declare discussion_module: boolean;
 
   @Column({
     type: DataType.ENUM,
     values: ["premium", "rulebased"],
     allowNull: false,
   })
-  membership_mgmt!: "premium" | "rulebased";
+  declare membership_mgmt: "premium" | "rulebased";
 
   @Column({
     type: DataType.BOOLEAN,
     allowNull: false,
   })
-  is_verified!: boolean;
+  declare is_verified: boolean;
 }
