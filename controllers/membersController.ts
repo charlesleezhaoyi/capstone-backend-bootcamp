@@ -118,17 +118,22 @@ export class MembersController {
   }
 
   async getMemberIDByEmail(req: Request, res: Response) {
+    console.log("getMemberIDByEmail called"); // Log when the method is called
     const { email } = req.body;
+    console.log("Email:", email); // Log the email from the request body
     try {
       const member = await Members.findOne({
         where: { email: email },
       });
+      console.log("Member:", member); // Log the member found in the database
       if (member) {
+        console.log("member found", member.id);
         return res.status(200).json({ success: true, data: member.id });
       } else {
-        return res.status(404).json({ error: true, msg: "Member not found" });
+        console.log("No member found"); // Log when no member is found
       }
     } catch (err) {
+      console.log("Error:", err); // Log any errors
       return res.status(400).json({ error: true, msg: (err as Error).message });
     }
   }

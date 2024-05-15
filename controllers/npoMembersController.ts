@@ -60,24 +60,29 @@ export class NpoMembersController {
       const npo = await Npos.findOne({
         where: { name: npo_name },
       });
+      const npoMember = await NpoMembers.findByPk(member_id);
+      const member = await Members.findByPk(member_id);
       if (!npo) {
         return res.status(404).json({ error: true, msg: "NPO not found" });
       }
-      const member = await Members.findByPk(member_id);
       if (!member) {
         return res.status(404).json({ error: true, msg: "Member not found" });
       }
-
-      // open_ended_ans should be nullable instead of placeholder strings - to explore other implementations in future
-      const npoMember = await NpoMembers.create({
-        member_id: member.id,
-        npo_id: npo.id,
-        role_id: 3,
-        open_ended_ans_1: "NULL",
-        open_ended_ans_2: "NULL",
-        open_ended_ans_3: "NULL",
-      });
-      return res.json(npoMember);
+      if (npoMember) {
+        return res
+          .status(400)
+          .json({ error: true, msg: "Member already assigned to NPO" });
+      } else {
+        await NpoMembers.create({
+          member_id: member_id,
+          npo_id: npo.id,
+          role_id: 3,
+          open_ended_ans_1: "NULL",
+          open_ended_ans_2: "NULL",
+          open_ended_ans_3: "NULL",
+        });
+        return res.json(npoMember);
+      }
     } catch (err) {
       return res.status(400).json({ error: true, msg: (err as Error).message });
     }
