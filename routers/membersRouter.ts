@@ -15,7 +15,7 @@ export class MembersRouter {
       "/update",
       this.membersController.updateMemberWithCompleteValues
     );
-    router.get("/retrieve", this.membersController.getMemberIDByEmail);
+    router.post("/retrieve", this.membersController.getMemberIDByEmail);
 
     return router;
   };
