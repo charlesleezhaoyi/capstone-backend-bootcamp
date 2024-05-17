@@ -6,17 +6,23 @@ import {
   Column,
   DataType,
   BelongsToMany,
+  ForeignKey,
+  BelongsTo,
 } from "sequelize-typescript";
 import { Categories } from "./categories";
 import { Members } from "./members";
+import { Npos } from "./npos";
 
 interface EventsAttributes {
   organiser_id: number;
+  npo_id: number;
   event_overview: string;
   event_name: string;
   event_photo_url?: string;
   date: Date;
   time: string;
+  location?: string;
+  price?: number;
 }
 
 @Table({
@@ -44,11 +50,19 @@ export class Events extends Model<EventsAttributes> {
   declare members: Members[];
 
   // Define the columns of the Events table
+  @ForeignKey(() => Members)
   @Column({
     type: DataType.INTEGER,
     allowNull: false,
   })
   declare organiser_id: number;
+
+  @ForeignKey(() => Npos)
+  @Column({
+    type: DataType.INTEGER,
+    allowNull: false,
+  })
+  declare npo_id: number;
 
   @Column({
     type: DataType.STRING,
@@ -79,4 +93,19 @@ export class Events extends Model<EventsAttributes> {
     allowNull: false,
   })
   declare time: string;
+
+  @Column({
+    type: DataType.STRING,
+    allowNull: true,
+  })
+  declare location?: string;
+
+  @Column({
+    type: DataType.STRING,
+    allowNull: true,
+  })
+  declare price?: string;
+
+  @BelongsTo(() => Npos)
+  npos!: Npos;
 }
