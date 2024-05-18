@@ -43,7 +43,7 @@ app.use(express.json());
 app.use("/members", membersRouter.routes());
 app.use("/npos", nposRouter.routes());
 app.use("/npoMembers", npoMembersRouter.routes());
-app.use("/events", eventsRouter.routes());
+app.use("/npoEvents", eventsRouter.routes());
 
 app.listen(PORT, () => {
   console.log(`Express app listening on port ${PORT}!`);

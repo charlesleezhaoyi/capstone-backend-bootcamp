@@ -12,7 +12,7 @@ export class EventsRouter {
 
   routes = () => {
     const router = Router();
-    router.get("/:npoId", eventsController.getNpoEvents);
+    router.get("/:npoId/events", eventsController.getNpoEvents);
 
     return router;
   };
