@@ -1,6 +1,19 @@
 import { Request, Response } from "express";
 import { Events, Members, NpoMembers, Npos, Roles } from "../db/models/index";
 
+export interface EventsAttributes {
+  id: number;
+  name: string;
+  description: string;
+  date: string;
+  time: string;
+  venue: string;
+  organiser_id: number;
+  npo_id: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export class EventsController {
   async getNpoEvents(req: Request, res: Response) {
     const { npoId } = req.params;
@@ -21,24 +34,24 @@ export class EventsController {
     }
   }
 
-  // async createNpoEvents(req: Request, res: Response) {
-  //   const { npoId } = req.params;
-  //   const { name, description, date, time, venue, organiserId } = req.body;
-  //   try {
-  //     const event = await Events.create({
-  //       name,
-  //       description,
-  //       date,
-  //       time,
-  //       venue,
-  //       organiser_id: organiserId,
-  //       npo_id: npoId,
-  //     });
-  //     return res.json(event);
-  //   } catch (err) {
-  //     return res.status(400).json({ error: true, msg: (err as Error).message });
-  //   }
-  // }
+  async createNpoEvents(req: Request, res: Response) {
+    const { npoId } = req.params;
+    const { name, description, date, time, venue, organiserId } = req.body;
+    try {
+      const event = await Events.create({
+        name: name,
+        description: description,
+        date: date,
+        time: time,
+        venue: venue,
+        organiser_id: organiserId,
+        npo_id: parseInt(npoId),
+      });
+      return res.json(event);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: (err as Error).message });
+    }
+  }
 
   // async updateNpoEvents(req: Request, res: Response) {
   //   const { eventId } = req.params;
