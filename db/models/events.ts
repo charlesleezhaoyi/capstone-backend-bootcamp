@@ -101,10 +101,10 @@ export class Events extends Model<EventsAttributes> {
   declare location?: string;
 
   @Column({
-    type: DataType.STRING,
+    type: DataType.INTEGER,
     allowNull: true,
   })
-  declare price?: string;
+  declare price?: number;
 
   @BelongsTo(() => Npos)
   npos!: Npos;
