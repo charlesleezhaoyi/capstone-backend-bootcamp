@@ -12,7 +12,10 @@ export class EventsRouter {
 
   routes = () => {
     const router = Router();
-    router.get("/:npoId/events", eventsController.getNpoEvents);
+    router.get("/:npo_id/events", eventsController.getNpoEvents);
+    router.post("/:npo_id", eventsController.createNpoEvent);
+    router.put("/:npo_id", eventsController.updateNpoEvent);
+    router.delete("/:npo_id", eventsController.deleteNpoEvent);
 
     return router;
   };
