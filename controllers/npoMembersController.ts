@@ -6,9 +6,9 @@ interface NpoMembersAttributes {
   npo_id: number;
   member_id: number;
   role_id: number;
-  open_ended_ans_1?: string | undefined;
-  open_ended_ans_2?: string | undefined;
-  open_ended_ans_3?: string | undefined;
+  open_ended_ans_1?: string;
+  open_ended_ans_2?: string;
+  open_ended_ans_3?: string;
   created_at: string;
   updated_at: string;
 }
@@ -22,7 +22,7 @@ export class NpoMembersController {
           {
             model: NpoMembers,
             where: { npo_id: npoId },
-            include: [{ model: Roles }],
+            include: [{ model: Roles }, { model: Npos }],
           },
         ],
       });
@@ -34,6 +34,7 @@ export class NpoMembersController {
 
   async assignRoleToMember(req: Request, res: Response) {
     const { role_name, member_id } = req.body;
+    console.log("Assigning role to a member");
     try {
       const role = await Roles.findOne({
         where: { name: role_name },

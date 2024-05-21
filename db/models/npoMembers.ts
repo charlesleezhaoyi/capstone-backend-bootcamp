@@ -16,9 +16,9 @@ interface NpoMembersAttributes {
   npo_id: number;
   member_id: number;
   role_id: number;
-  open_ended_ans_1: string;
-  open_ended_ans_2: string;
-  open_ended_ans_3: string;
+  open_ended_ans_1?: string;
+  open_ended_ans_2?: string;
+  open_ended_ans_3?: string;
 }
 
 @Table({
