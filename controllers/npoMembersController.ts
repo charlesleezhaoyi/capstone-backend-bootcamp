@@ -122,10 +122,15 @@ export class NpoMembersController {
       if (!member) {
         return res.status(404).json({ error: true, msg: "Member not found" });
       }
-      const npo_id = await NpoMembers.findOne({
+      const npoMember = await NpoMembers.findOne({
         where: { member_id: member.id },
       });
-      return res.json(npo_id);
+      if (!npoMember) {
+        return res
+          .status(404)
+          .json({ error: true, msg: "NPO Member not found" });
+      }
+      return res.json(npoMember.npo_id);
     } catch (err) {
       return res.status(400).json({ error: true, msg: (err as Error).message });
     }

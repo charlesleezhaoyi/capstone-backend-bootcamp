@@ -14,7 +14,7 @@ export class NpoMembersRouter {
     const router = Router();
     router.get("/:npoId", nposController.getNpoMembers);
     router.get("/", nposController.getNpoMembersRoleAndNpo);
-    router.get("/getNpoIDByMemberEmail", nposController.getNpoIDByMemberEmail);
+    router.post("/getNpoIDByMemberEmail", nposController.getNpoIDByMemberEmail);
     router.post("/assignRole", nposController.assignRoleToMember);
     router.post("/assignNpo", nposController.assignNpoToMember);
 
