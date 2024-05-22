@@ -17,11 +17,11 @@ interface MembersAttributes {
   date_of_birth: Date;
   gender: EnumDataType<string>;
   occupation: string;
-  employee_at: string;
+  employee_at?: string;
   email: string;
-  cv_url: string;
-  portfolio_link_url: string;
-  display_img_url: string;
+  cv_url?: string;
+  portfolio_link_url?: string;
+  display_img_url?: string;
   is_onboarded: boolean;
 }
 
