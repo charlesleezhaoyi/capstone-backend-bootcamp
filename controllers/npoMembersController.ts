@@ -33,11 +33,11 @@ export class NpoMembersController {
   }
 
   async assignRoleToMember(req: Request, res: Response) {
-    const { role_name, member_id } = req.body;
+    const { role_id, member_id } = req.body;
     console.log("Assigning role to a member");
     try {
       const role = await Roles.findOne({
-        where: { name: role_name },
+        where: { id: role_id } as any,
       });
       console.log(role);
       if (!role) {
@@ -61,6 +61,7 @@ export class NpoMembersController {
       const npo = await Npos.findOne({
         where: { name: npo_name },
       });
+      console.log(npo);
 
       if (!npo) {
         return res.status(404).json({ error: true, msg: "NPO not found" });
@@ -72,10 +73,13 @@ export class NpoMembersController {
           npo_id: npo.id,
         },
       });
+
+      console.log(npoMember);
       const member = await Members.findByPk(member_id);
       if (!npo) {
         return res.status(404).json({ error: true, msg: "NPO not found" });
       }
+      console.log(member);
       if (!member) {
         return res.status(404).json({ error: true, msg: "Member not found" });
       }
@@ -113,7 +117,7 @@ export class NpoMembersController {
   }
 
   //Will not work as expected if user has multiple NPOs under same email
-  async getNpoIDByMemberEmail(req: Request, res: Response) {
+  async getNpoNameByMemberEmail(req: Request, res: Response) {
     const { email } = req.body;
     try {
       const member = await Members.findOne({
@@ -135,7 +139,8 @@ export class NpoMembersController {
           .status(400)
           .json({ error: true, msg: "Member has multiple NPOs" });
       } else {
-        return res.json(npoMembers[0].npo_id);
+        const npo_name = await Npos.findByPk(npoMembers[0].npo_id);
+        return res.json(npo_name?.name);
       }
     } catch (err) {
       return res.status(400).json({ error: true, msg: (err as Error).message });

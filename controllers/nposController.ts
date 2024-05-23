@@ -99,6 +99,18 @@ export class NposController {
     }
   }
 
+  async getNpoIdByNpoName(req: Request, res: Response) {
+    const { name } = req.body;
+    try {
+      const output = await Npos.findOne({
+        where: { name: name },
+      });
+      return res.json(output);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: (err as Error).message });
+    }
+  }
+
   async updateNpoData(req: Request, res: Response) {
     const { npo_id, ...updateData } = req.body;
     try {
