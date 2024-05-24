@@ -62,8 +62,8 @@ export class EventsController {
   }
 
   async createNpoEvent(req: Request, res: Response) {
-    const { npo_id } = req.params;
     const {
+      npo_id,
       organiser_id,
       event_name,
       event_overview,
@@ -74,9 +74,7 @@ export class EventsController {
     } = req.body;
 
     try {
-      console.log(`${npo_id}`);
       const npo = await Npos.findByPk(npo_id);
-      console.log(npo);
       if (!npo) {
         return res.status(404).json({ error: true, msg: "NPO not found" });
       }
@@ -85,10 +83,13 @@ export class EventsController {
         ...req,
         body: { npo_id, organiser_id },
       };
+
+      console.log(newReq);
       const isOrganiserAllowed = await this.checkOrganiserPermissions(
         newReq as Request,
         res
       );
+      console.log(isOrganiserAllowed);
 
       if (!isOrganiserAllowed) {
         return res.status(404).json({
@@ -107,6 +108,8 @@ export class EventsController {
         location: location,
         price: price,
       });
+
+      console.log(newEvent);
       return res.json(newEvent);
     } catch (err) {
       console.log(err);
@@ -115,8 +118,8 @@ export class EventsController {
   }
 
   async updateNpoEvent(req: Request, res: Response) {
-    const { npo_id } = req.params;
     const {
+      npo_id,
       event_id,
       organiser_id,
       event_name,

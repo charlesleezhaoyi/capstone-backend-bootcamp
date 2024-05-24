@@ -14,6 +14,7 @@ export class NposRouter {
     const router = Router();
     router.get("/checkNpoExist", nposController.checkNpoExist);
     router.post("/createNpo", nposController.createNpo);
+    router.post("/getNpoIdByNpoName", nposController.getNpoIdByNpoName);
 
     return router;
   };
