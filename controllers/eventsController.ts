@@ -41,6 +41,17 @@ export class EventsController {
     }
   }
 
+  async getSingleEventById(req: Request, res: Response) {
+    const { event_id } = req.params;
+    console.log(req.params);
+    try {
+      const event = await Events.findByPk(event_id);
+      return res.json(event);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: (err as Error).message });
+    }
+  }
+
   async checkOrganiserPermissions(
     req: Request,
     res: Response
