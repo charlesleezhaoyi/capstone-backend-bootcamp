@@ -41,7 +41,7 @@ export class EventsController {
     }
   }
 
-  async getEvent(req: Request, res: Response) {
+  async getSingleEventById(req: Request, res: Response) {
     const { event_id } = req.params;
     console.log(req.params);
     try {
