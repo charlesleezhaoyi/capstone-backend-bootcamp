@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { Members, NpoMembers, Npos, Roles } from "../db/models/index";
 import { EnumDataType } from "sequelize";
 
-interface NpoMembersAttributes {
+interface NpoMember {
   id: number;
   npo_id: number;
   member_id: number;
@@ -28,7 +28,7 @@ export interface MembersAttributes {
   is_onboarded: boolean;
   createdAt: string;
   updatedAt: string;
-  npoMembers: NpoMembersAttributes[];
+  npoMembers: NpoMember[];
 }
 
 export class MembersController {
