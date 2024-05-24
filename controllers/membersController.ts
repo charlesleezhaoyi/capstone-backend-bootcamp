@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { Members, NpoMembers, Npos, Roles } from "../db/models/index";
 import { EnumDataType } from "sequelize";
 
-interface NpoMembersAttributes {
+interface NpoMember {
   id: number;
   npo_id: number;
   member_id: number;
@@ -14,11 +14,6 @@ interface NpoMembersAttributes {
   createdAt: string;
   updatedAt: string;
 }
-
-// enum Gender {
-//   Female = "female",
-//   Male = "male",
-// }
 
 export interface MembersAttributes {
   id: number;
@@ -33,7 +28,7 @@ export interface MembersAttributes {
   is_onboarded: boolean;
   createdAt: string;
   updatedAt: string;
-  npoMembers: NpoMembersAttributes[];
+  npoMembers: NpoMember[];
 }
 
 export class MembersController {
@@ -53,14 +48,6 @@ export class MembersController {
         portfolio_link_url: "NULL",
         is_onboarded: false,
         display_img_url: "NULL",
-        // const output = await Members.findAll({
-        //   include: [
-        //     {
-        //       model: NpoMembers,
-        //       where: { npo_id: npoId },
-        //       include: [{ model: Roles }],
-        //     },
-        //   ],
       });
       return res.json(output);
     } catch (err) {
