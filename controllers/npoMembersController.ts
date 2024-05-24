@@ -103,12 +103,24 @@ export class NpoMembersController {
     }
   }
 
-  async getNpoMembersRoleAndNpo(req: Request, res: Response) {
+  async getNpoMembersRoleByNpo(req: Request, res: Response) {
+    const { npo_id, member_id } = req.body;
+    try {
+      const output = await NpoMembers.findAll({
+        where: { npo_id: npo_id, member_id: member_id },
+      });
+      return res.json(output);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: (err as Error).message });
+    }
+  }
+
+  async getNpoMembersNpo(req: Request, res: Response) {
     const { member_id } = req.body;
     try {
       const output = await NpoMembers.findAll({
         where: { member_id: member_id },
-        include: [{ model: Roles }, { model: Npos }],
+        include: [{ model: Npos }],
       });
       return res.json(output);
     } catch (err) {
