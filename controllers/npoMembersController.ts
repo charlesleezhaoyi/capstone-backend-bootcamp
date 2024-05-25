@@ -129,6 +129,19 @@ export class NpoMembersController {
     }
   }
 
+  // async getNpoMembersRoleAndNpo(req: Request, res: Response) {
+  //   const { member_id } = req.body;
+  //   try {
+  //     const output = await NpoMembers.findAll({
+  //       where: { member_id: member_id },
+  //       include: [{ model: Roles }, { model: Npos }],
+  //     });
+  //     return res.json(output);
+  //   } catch (err) {
+  //     return res.status(400).json({ error: true, msg: (err as Error).message });
+  //   }
+  // }
+
   //Will not work as expected if user has multiple NPOs under same email
   async getNpoNameByMemberEmail(req: Request, res: Response) {
     const { email } = req.body;
