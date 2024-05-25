@@ -56,7 +56,7 @@ export class NpoMembersController {
   }
 
   async assignNpoToMember(req: Request, res: Response) {
-    const { npo_name, member_id } = req.body;
+    const { npo_name, member_id, role_id } = req.body;
     try {
       const npo = await Npos.findOne({
         where: { name: npo_name },
@@ -91,7 +91,7 @@ export class NpoMembersController {
         await NpoMembers.create({
           member_id: member_id,
           npo_id: npo.id,
-          role_id: 3,
+          role_id: role_id,
           open_ended_ans_1: "NULL",
           open_ended_ans_2: "NULL",
           open_ended_ans_3: "NULL",
@@ -103,18 +103,44 @@ export class NpoMembersController {
     }
   }
 
-  async getNpoMembersRoleAndNpo(req: Request, res: Response) {
-    const { member_id } = req.body;
+  async getNpoMembersNpo(req: Request, res: Response) {
+    const { member_id, npo_id } = req.body;
     try {
       const output = await NpoMembers.findAll({
         where: { member_id: member_id },
-        include: [{ model: Roles }, { model: Npos }],
+        include: [{ model: Npos }],
       });
       return res.json(output);
     } catch (err) {
       return res.status(400).json({ error: true, msg: (err as Error).message });
     }
   }
+
+  async getNpoMembersRole(req: Request, res: Response) {
+    const { member_id, npo_id } = req.body;
+    try {
+      const output = await NpoMembers.findAll({
+        where: { member_id: member_id, npo_id: npo_id },
+        include: [{ model: Roles }],
+      });
+      return res.json(output);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: (err as Error).message });
+    }
+  }
+
+  // async getNpoMembersRoleAndNpo(req: Request, res: Response) {
+  //   const { member_id } = req.body;
+  //   try {
+  //     const output = await NpoMembers.findAll({
+  //       where: { member_id: member_id },
+  //       include: [{ model: Roles }, { model: Npos }],
+  //     });
+  //     return res.json(output);
+  //   } catch (err) {
+  //     return res.status(400).json({ error: true, msg: (err as Error).message });
+  //   }
+  // }
 
   //Will not work as expected if user has multiple NPOs under same email
   async getNpoNameByMemberEmail(req: Request, res: Response) {
