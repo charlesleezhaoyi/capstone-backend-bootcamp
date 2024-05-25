@@ -14,6 +14,8 @@ export class EventMembersRouter {
     const router = Router();
     router.post("/rsvpEvent", eventMembersController.rsvpEvent);
     router.post("/removeRsvpEvent", eventMembersController.removeRSVPfromEvent);
+    router.post("/checkRSVPStatus", eventMembersController.checkRSVPStatus);
+    router.post("/getRSVPList", eventMembersController.countRsvpForEvent);
 
     return router;
   };

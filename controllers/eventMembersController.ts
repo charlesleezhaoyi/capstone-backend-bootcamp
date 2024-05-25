@@ -54,4 +54,46 @@ export class EventMembersController {
       return res.status(400).json({ error: true, msg: (err as Error).message });
     }
   }
+
+  async checkRSVPStatus(req: Request, res: Response) {
+    const { event_id, member_id } = req.body;
+    try {
+      const event = await Events.findByPk(event_id);
+      if (!event) {
+        return res.status(404).json({ error: true, msg: "Event not found" });
+      }
+      const member = await Members.findByPk(member_id);
+      if (!member) {
+        return res.status(404).json({ error: true, msg: "Member not found" });
+      }
+      const eventMember = await EventMembers.findOne({
+        where: {
+          event_id: event.id,
+          member_id: member.id,
+        },
+      });
+      return res.json({ rsvp: eventMember?.rsvp });
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: (err as Error).message });
+    }
+  }
+
+  async countRsvpForEvent(req: Request, res: Response) {
+    const { event_id } = req.body;
+    try {
+      const event = await Events.findByPk(event_id);
+      if (!event) {
+        return res.status(404).json({ error: true, msg: "Event not found" });
+      }
+      const count = await EventMembers.count({
+        where: {
+          event_id: event.id,
+          rsvp: true,
+        },
+      });
+      return res.json({ count });
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: (err as Error).message });
+    }
+  }
 }

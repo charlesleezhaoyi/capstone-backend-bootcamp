@@ -16,8 +16,8 @@ export class NpoMembersRouter {
     router.post("/", npoMembersController.getNpoMembersNpo);
     router.post("/getNpoMembersRole", npoMembersController.getNpoMembersRole);
     router.post(
-      "/getNpoNameByMemberEmail",
-      npoMembersController.getNpoNameByMemberEmail
+      "/getNpoNameByMemberID",
+      npoMembersController.getNpoNameByMemberID
     );
     router.post("/assignRole", npoMembersController.assignRoleToMember);
     router.post("/assignNpo", npoMembersController.assignNpoToMember);

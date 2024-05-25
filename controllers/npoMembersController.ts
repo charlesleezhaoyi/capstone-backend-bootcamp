@@ -143,17 +143,15 @@ export class NpoMembersController {
   // }
 
   //Will not work as expected if user has multiple NPOs under same email
-  async getNpoNameByMemberEmail(req: Request, res: Response) {
-    const { email } = req.body;
+  async getNpoNameByMemberID(req: Request, res: Response) {
+    const { member_id } = req.body;
     try {
-      const member = await Members.findOne({
-        where: { email: email },
-      });
+      const member = await Members.findByPk(member_id);
       if (!member) {
         return res.status(404).json({ error: true, msg: "Member not found" });
       }
       const npoMembers = await NpoMembers.findAll({
-        where: { member_id: member.id },
+        where: { member_id: member_id },
         order: [["updatedAt", "DESC"]],
       });
       if (!npoMembers.length) {
