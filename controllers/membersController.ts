@@ -15,11 +15,6 @@ interface NpoMembersAttributes {
   updatedAt: string;
 }
 
-// enum Gender {
-//   Female = "female",
-//   Male = "male",
-// }
-
 export interface MembersAttributes {
   id: number;
   full_name: string;
@@ -53,14 +48,6 @@ export class MembersController {
         portfolio_link_url: "NULL",
         is_onboarded: false,
         display_img_url: "NULL",
-        // const output = await Members.findAll({
-        //   include: [
-        //     {
-        //       model: NpoMembers,
-        //       where: { npo_id: npoId },
-        //       include: [{ model: Roles }],
-        //     },
-        //   ],
       });
       return res.json(output);
     } catch (err) {
