@@ -5,6 +5,7 @@ import { NpoMembers } from "./npoMembers";
 import { Roles } from "./roles";
 import { Events } from "./events";
 import { Categories } from "./categories";
+import { EventMembers } from "./eventMembers";
 import { Dialect } from "sequelize";
 import dotenv from "dotenv";
 import path from "path";
@@ -42,7 +43,15 @@ if (process.env.DATABASE_URL) {
     database: process.env.DATABASE,
     host: process.env.HOST,
     dialect: process.env.DIALECT as Dialect,
-    models: [Npos, Members, NpoMembers, Roles, Events, Categories],
+    models: [
+      Npos,
+      Members,
+      NpoMembers,
+      Roles,
+      Events,
+      Categories,
+      EventMembers,
+    ],
   });
 }
 
@@ -57,4 +66,13 @@ if (process.env.DATABASE_URL) {
 })();
 
 // Export model instance
-export { sequelize, Npos, Members, NpoMembers, Roles, Events, Categories };
+export {
+  sequelize,
+  Npos,
+  Members,
+  NpoMembers,
+  Roles,
+  Events,
+  Categories,
+  EventMembers,
+};
