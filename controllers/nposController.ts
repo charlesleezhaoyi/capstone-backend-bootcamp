@@ -5,6 +5,7 @@ interface NposAttributes {
   name: string;
   key_activities: string;
   company_website_url: string;
+  url_extension: string;
   country_incorporated: string;
   company_description: string;
   company_size: "1-10" | "11-30" | "31-50";
@@ -45,6 +46,7 @@ export class NposController {
       name,
       key_activities,
       company_website_url,
+      url_extension,
       country_incorporated,
       company_description,
       company_size,
@@ -62,6 +64,7 @@ export class NposController {
     try {
       const output = await Npos.create({
         name: name,
+        url_extension: url_extension,
         key_activities: key_activities,
         company_website_url: company_website_url,
         country_incorporated: country_incorporated,
