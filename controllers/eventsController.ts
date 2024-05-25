@@ -23,7 +23,7 @@ export class EventsController {
   }
 
   async getNpoEvents(req: Request, res: Response) {
-    const { npoId } = req.params;
+    const { npo_id } = req.params;
     console.log(req.params);
     try {
       const events = await Events.findAll({
@@ -75,15 +75,14 @@ export class EventsController {
   async createNpoEvent(req: Request, res: Response) {
     const {
       npo_id,
-      organiser_id,
       event_name,
       event_overview,
       date,
       time,
       location,
+      organiser_id,
       price,
     } = req.body;
-
     try {
       const npo = await Npos.findByPk(npo_id);
       if (!npo) {
@@ -108,10 +107,9 @@ export class EventsController {
           msg: "User is not allowed to create event or not found in NPO",
         });
       }
-
       const newEvent = await Events.create({
-        organiser_id: organiser_id,
         npo_id: parseInt(npo_id),
+        organiser_id: organiser_id,
         event_name: event_name,
         event_overview: event_overview,
         date: date,
