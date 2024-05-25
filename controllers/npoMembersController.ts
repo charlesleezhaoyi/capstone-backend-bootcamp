@@ -52,14 +52,8 @@ export class NpoMembersController {
       if (!member) {
         return res.status(404).json({ error: true, msg: "Member not found" });
       }
-      console.log("member id:" + member_id);
-      console.log(member);
-      console.log(member.member_id);
-      console.log(member.role_id);
-      console.log(role.id);
       member.role_id = role.id;
       await member.save();
-      console.log(member.role_id);
       return res.json(member);
     } catch (err) {
       return res.status(400).json({ error: true, msg: (err as Error).message });
