@@ -23,7 +23,7 @@ export class EventsController {
   }
 
   async getNpoEvents(req: Request, res: Response) {
-    const { npoId } = req.params;
+    const { npo_id } = req.params;
     console.log(req.params);
     try {
       const events = await Events.findAll({
