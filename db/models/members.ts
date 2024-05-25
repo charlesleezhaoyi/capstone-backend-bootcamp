@@ -41,7 +41,7 @@ export class Members extends Model<MembersAttributes> {
     through: "event_members",
     foreignKey: "member_id",
     otherKey: "event_id",
-    as: "Members",
+    as: "EventMembers",
   })
   declare events: Events[];
 

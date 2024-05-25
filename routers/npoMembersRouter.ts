@@ -1,7 +1,7 @@
 import { NpoMembersController } from "../controllers/npoMembersController";
 import { Router } from "express";
 
-const nposController = new NpoMembersController();
+const npoMembersController = new NpoMembersController();
 
 export class NpoMembersRouter {
   private npoMembersController: NpoMembersController;
@@ -12,15 +12,15 @@ export class NpoMembersRouter {
 
   routes = () => {
     const router = Router();
-    router.get("/:npoId", nposController.getNpoMembers);
-    router.post("/", nposController.getNpoMembersNpo);
-    router.post("/getNpoMembersRole", nposController.getNpoMembersRole);
+    router.get("/:npoId", npoMembersController.getNpoMembers);
+    router.post("/", npoMembersController.getNpoMembersNpo);
+    router.post("/getNpoMembersRole", npoMembersController.getNpoMembersRole);
     router.post(
       "/getNpoNameByMemberEmail",
-      nposController.getNpoNameByMemberEmail
+      npoMembersController.getNpoNameByMemberEmail
     );
-    router.post("/assignRole", nposController.assignRoleToMember);
-    router.post("/assignNpo", nposController.assignNpoToMember);
+    router.post("/assignRole", npoMembersController.assignRoleToMember);
+    router.post("/assignNpo", npoMembersController.assignNpoToMember);
 
     return router;
   };
