@@ -61,6 +61,7 @@ export class NpoMembersController {
       const npo = await Npos.findOne({
         where: { name: npo_name },
       });
+      console.log(npo);
 
       if (!npo) {
         return res.status(404).json({ error: true, msg: "NPO not found" });
@@ -72,6 +73,8 @@ export class NpoMembersController {
           npo_id: npo.id,
         },
       });
+
+      console.log(npoMember);
       const member = await Members.findByPk(member_id);
       if (!npo) {
         return res.status(404).json({ error: true, msg: "NPO not found" });
