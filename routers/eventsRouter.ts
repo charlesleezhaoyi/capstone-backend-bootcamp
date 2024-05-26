@@ -13,6 +13,7 @@ export class EventsRouter {
   routes = () => {
     const router = Router();
     router.get("/:npo_id/events", eventsController.getNpoEvents);
+    router.get("/:event_id/attendees", eventsController.getNpoEventAttendees);
     router.get("/:event_id", eventsController.getSingleEventById);
     router.post("/:npo_id", eventsController.createNpoEvent);
     router.put("/:npo_id", eventsController.updateNpoEvent);
