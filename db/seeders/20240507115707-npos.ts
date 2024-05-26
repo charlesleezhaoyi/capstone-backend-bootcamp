@@ -8,6 +8,7 @@ module.exports = {
     await queryInterface.bulkInsert("npos", [
       {
         name: "Shellter",
+        url_extension: "shellter",
         key_activities: "Environment",
         company_website_url: "www.shellter.com",
         country_incorporated: "Singapore",
@@ -27,6 +28,7 @@ module.exports = {
       },
       {
         name: "Dogtors",
+        url_extension: "dogtors",
         key_activities: "Healthcare",
         company_website_url: "www.dogtors.com",
         country_incorporated: "Malaysia",

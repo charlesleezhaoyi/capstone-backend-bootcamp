@@ -104,8 +104,8 @@ export class MembersController {
     }
   }
 
-  async getMemberIDByEmail(req: Request, res: Response) {
-    console.log("getMemberIDByEmail called"); // Log when the method is called
+  async getMemberByEmail(req: Request, res: Response) {
+    console.log("getMemberByEmail called"); // Log when the method is called
     const { email } = req.body;
     console.log("Email:", email); // Log the email from the request body
     try {
@@ -115,7 +115,7 @@ export class MembersController {
       console.log("Member:", member); // Log the member found in the database
       if (member) {
         console.log("member found", member.id);
-        return res.status(200).json({ success: true, data: member.id });
+        return res.status(200).json({ success: true, data: member });
       } else {
         console.log("No member found"); // Log when no member is found
       }

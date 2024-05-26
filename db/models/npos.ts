@@ -8,6 +8,7 @@ interface NposAttributes {
   name: string;
   key_activities: string;
   company_website_url: string;
+  url_extension: string;
   country_incorporated: string;
   company_description: string;
   company_size: "1-10" | "11-30" | "31-50";
@@ -40,6 +41,12 @@ export class Npos extends Model<NposAttributes> {
     allowNull: false,
   })
   declare name: string;
+
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+  })
+  declare url_extension: string;
 
   @Column({
     type: DataType.ENUM,
