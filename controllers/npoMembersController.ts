@@ -14,14 +14,17 @@ interface NpoMembersAttributes {
 }
 
 export class NpoMembersController {
-  async getNpoMembers(req: Request, res: Response) {
-    const { npoId } = req.params;
+  async getNpoMembersByUrl(req: Request, res: Response) {
+    const { npo_url_extension } = req.params;
     try {
+      const npo = await Npos.findOne({
+        where: { url_extension: npo_url_extension },
+      });
       const output = await Members.findAll({
         include: [
           {
             model: NpoMembers,
-            where: { npo_id: npoId },
+            where: { npo_id: npo?.id },
             include: [{ model: Roles }, { model: Npos }],
           },
         ],
@@ -43,7 +46,9 @@ export class NpoMembersController {
       if (!role) {
         return res.status(404).json({ error: true, msg: "Role not found" });
       }
-      const member = await NpoMembers.findByPk(member_id);
+      const member = await NpoMembers.findOne({
+        where: { member_id: member_id },
+      });
       if (!member) {
         return res.status(404).json({ error: true, msg: "Member not found" });
       }
