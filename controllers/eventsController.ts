@@ -76,6 +76,7 @@ export class EventsController {
     const {
       npo_id,
       organiser_id,
+      event_photo_url,
       event_name,
       event_overview,
       date,
@@ -113,6 +114,7 @@ export class EventsController {
         organiser_id: organiser_id,
         npo_id: parseInt(npo_id),
         event_name: event_name,
+        event_photo_url: event_photo_url,
         event_overview: event_overview,
         date: date,
         time: time,
@@ -133,6 +135,7 @@ export class EventsController {
       npo_id,
       event_id,
       organiser_id,
+      event_photo_url,
       event_name,
       event_overview,
       date,
@@ -168,6 +171,7 @@ export class EventsController {
         return res.status(404).json({ error: true, msg: "Event not found" });
       }
       event.organiser_id = organiser_id;
+      event.event_photo_url = event_photo_url;
       event.event_name = event_name;
       event.event_overview = event_overview;
       event.date = date;
