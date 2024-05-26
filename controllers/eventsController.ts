@@ -1,5 +1,11 @@
 import { Request, Response } from "express";
-import { Events, Members, NpoMembers, Npos, Roles } from "../db/models/index";
+import {
+  Events,
+  Members,
+  NpoMembers,
+  Npos,
+  EventMembers,
+} from "../db/models/index";
 import { Op } from "sequelize";
 
 interface EventsAttributes {
@@ -24,7 +30,6 @@ export class EventsController {
 
   async getNpoEvents(req: Request, res: Response) {
     const { npo_id } = req.params;
-    console.log(req.params);
     try {
       const events = await Events.findAll({
         where: { npo_id: npo_id },
@@ -41,9 +46,21 @@ export class EventsController {
     }
   }
 
+  async getNpoEventAttendees(req: Request, res: Response) {
+    const { event_id } = req.params;
+    try {
+      const attendees = await EventMembers.findAll({
+        where: { event_id: event_id },
+        include: [{ model: Members }],
+      });
+      return res.json(attendees);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: (err as Error).message });
+    }
+  }
+
   async getSingleEventById(req: Request, res: Response) {
     const { event_id } = req.params;
-    console.log(req.params);
     try {
       const event = await Events.findByPk(event_id);
       return res.json(event);
