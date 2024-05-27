@@ -40,7 +40,6 @@ export class NposController {
     }
   }
 
-  //missing endpoint
   async createNpo(req: Request, res: Response) {
     const {
       name,
@@ -87,8 +86,6 @@ export class NposController {
       return res.status(400).json({ error: true, msg: (err as Error).message });
     }
   }
-
-  //missing endpoint
   async updateNpoVerifiedStatus(req: Request, res: Response) {
     const { npo_id } = req.body;
     try {
@@ -139,6 +136,17 @@ export class NposController {
       }
 
       return res.json({ success: true, msg: "NPO data updated successfully" });
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: (err as Error).message });
+    }
+  }
+
+  async getListNpoNames(req: Request, res: Response) {
+    try {
+      const output = await Npos.findAll({
+        attributes: ["name"],
+      });
+      return res.json(output);
     } catch (err) {
       return res.status(400).json({ error: true, msg: (err as Error).message });
     }
