@@ -65,6 +65,7 @@ export class MembersController {
       employee_at,
       cv_url,
       portfolio_link_url,
+      display_img_url,
       is_onboarded,
     } = req.body;
     console.log(req.body);
@@ -84,6 +85,7 @@ export class MembersController {
           employee_at,
           cv_url,
           portfolio_link_url,
+          display_img_url,
           is_onboarded,
         } = req.body;
         if (full_name) member.full_name = full_name;
@@ -94,6 +96,7 @@ export class MembersController {
         if (employee_at) member.employee_at = employee_at;
         if (cv_url) member.cv_url = cv_url;
         if (portfolio_link_url) member.portfolio_link_url = portfolio_link_url;
+        if (display_img_url) member.display_img_url = display_img_url;
         if (is_onboarded) member.is_onboarded = is_onboarded;
         console.log("member updated", member);
         await member.save();
